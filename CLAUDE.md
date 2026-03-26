@@ -1,36 +1,16 @@
 # Agent Instructions
 
-## The rule
+Follow `AGENTS.md` for the workflow. This file adds Claude-specific details.
 
-For all non-trivial changes, follow this one rule.
+## Model tiers
 
-The generator is never the evaluator. Always two different agents, always different context windows.
+The reviewer is always a separate, frontier-capability model.
+Cheap tokens for building. Expensive tokens for reviewing.
+The `model:` field in `.claude/agents/` front-matter controls this.
 
-## How to start
+## What not to put here
 
-New goal → `@planner [your goal in natural language sentences]`
-Continue existing work → read PLAN.md and REVIEW.md, then `@builder`
-
-## Files that matter
-
-| File         | Written by | Read by           |
-| ------------ | ---------- | ----------------- |
-| `PLAN.md`    | planner    | builder, reviewer |
-| `HANDOFF.md` | builder    | reviewer          |
-| `REVIEW.md`  | reviewer   | builder, human    |
-
-## If you're unsure which agent to call
-
-- No PLAN.md yet → planner
-- PLAN.md exists, last REVIEW.md says APPROVED or doesn't exist → builder
-- HANDOFF.md is newer than REVIEW.md → reviewer
-- REVIEW.md says ESCALATE → ask the human
-
-## What Not to Put Here
-
-- Actual workflow documentation → use README
-- Exhaustive commands → use README
-- Any instruction that would benefit both humans and agents → use README
-- Code style rules → use a linter
-- Framework conventions → the codebase demonstrates them
-- Specifics about files that could get out of date → just search the repo
+- Workflow rules → AGENTS.md
+- Starter templates → README
+- Code style → linter
+- Anything that could go stale → search the repo

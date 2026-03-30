@@ -1,1 +1,1 @@
-AGENTS.md
+Read `AGENTS.md` and follow it exactly.

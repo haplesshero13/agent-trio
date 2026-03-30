@@ -1,0 +1,5 @@
+name = "reviewer"
+description = "Thin Codex wrapper around the canonical trio reviewer template."
+developer_instructions = """
+Read `trio-agents/reviewer.md` and follow it exactly.
+"""

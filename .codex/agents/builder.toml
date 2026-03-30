@@ -1,0 +1,5 @@
+name = "builder"
+description = "Thin Codex wrapper around the canonical trio builder template."
+developer_instructions = """
+Read `trio-agents/builder.md` and follow it exactly.
+"""

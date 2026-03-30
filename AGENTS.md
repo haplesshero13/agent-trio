@@ -15,6 +15,7 @@ When the head instance writes `PLAN.md`, it contains:
 - **Ordered chunks** — work broken into reviewable units
 
 This is the spec.
+`README.md` is the source of overall repo goals. `PLAN.md` is the current-task spec.
 
 ## The loop
 
@@ -33,13 +34,20 @@ This is the spec.
 | `PLAN.md`            | head instance            | builder, reviewer        |
 | `HANDOFF.md`         | builder                  | reviewer                 |
 | `REVIEW.md`          | reviewer                 | builder, human           |
-| `.trio/criteria.md`  | human (or head at setup) | reviewer only            |
+| `.trio/criteria.md`  | human + head instance    | reviewer only            |
 | `.trio/learnings.md` | reviewer (appends)       | builder (reads at start) |
+
+## Criteria
+
+`.trio/criteria.md` is a gitignored holdout file and a living conversation
+between the human and the head instance. It is not fire-and-forget.
+Its job is to encode what the reviewer must validate against reality.
 
 ## Routing
 
 When resuming, route based on file state:
 
+- First, read `README.md` for the repo's overall goals
 - No PLAN.md → write one, confirm with human, then build
 - PLAN.md confirmed, no HANDOFF.md → build
 - HANDOFF.md newer than REVIEW.md → review

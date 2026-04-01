@@ -1,11 +1,9 @@
 # Learnings
 
-This file is checked into the repo.
-Use Git to track how files change over time; use this file to keep the current
-durable lessons close at hand.
-
 Keep only lessons that change how the next update is planned, built,
 reviewed, or validated. Rewrite, merge, and prune continously.
+
+Source control will track versions of this document, so keep it fresh.
 
 ## Current learnings
 

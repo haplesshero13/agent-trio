@@ -1,6 +1,6 @@
 ---
 name: builder
-description: Thin Claude wrapper around the canonical trio builder template.
+description: Thin Claude wrapper around the agent-trio builder template.
 tools: [Read, Write, Edit, Bash, Grep, WebSearch]
 ---
 

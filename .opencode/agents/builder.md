@@ -1,6 +1,6 @@
 ---
-description: Thin OpenCode wrapper around the canonical trio builder template.
-mode: subagent
+description: Thin OpenCode wrapper around the agent-trio builder template.
+mode: all
 permission:
   task:
     "*": deny

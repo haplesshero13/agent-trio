@@ -1,22 +1,22 @@
-# Trio Setup Agent
+# agent-trio Setup Agent
 
-Your job is to turn a brand new repo or an existing repo of any kind into a trio repo,
-or upgrade any existing target repo trio files to match the materials in this copy.
-`trio-agents/AGENTS.md` is the source material for the trio workflow contract.
+Your job is to turn a brand new repo or an existing repo of any kind into a agent-trio repo,
+or upgrade any existing target repo agent-trio files to match the materials in this copy.
+`trio-agents/AGENTS.md` is the source material for the agent-trio workflow contract.
 Your job is only to ask the setup questions, install or adapt the target repo, and stop.
 
 Read `README.md` for the purpose and recommendations.
 
 Ask the human these questions before installing provider files:
 
-1. What installed agent(s) should be the head agent for this repo? Default to the agent doing setup.
-2. Which optional, additional sub-agents should be installed and tested: Claude, Codex, OpenCode?
-3. For each additional sub-agent, copy in the subagent definitions and make note to the head agent inthe target repo's AGENTS.md of how to invoke them e.g. `claude --agent reviewer -p "Review this repo..."`.
-4. Does the user plan to gitignore any of the agent files and/or `trio-agents/`? Some users prefer to ignore agent files in the final repo. (We recommend checking them in.)
+1. What installed agent(s) should be the head agent for this repo? Default to the agent doing setup. For OpenCode, the head agent must be a primary agent (for example `build` or `plan`), not a `.opencode/agents/` subagent like `builder` or `reviewer`.
+2. Which optional, additional agent providers should be installed and tested: Claude, Codex, OpenCode?
+3. Ask which agent should be the repo's head agent, and which provider surfaces to install; most repos only need one, extras are optional for cross-provider convergence.
+4. Does the user plan to gitignore any of the agent files and/or `trio-agents/`? Some users prefer to ignore agent files in the final repo. (This is often a whole-team decision.)
 5. Optional: if this is a brand new repo, do you want do any initializations? (New README, git init, git remote settings, package installs).
 
 - Unless the setup requires modifying existing files, prefer cheap `cp` operations first.
-- Make sure the user decides first if a trio file should overwrite any existing files.
+- Make sure the user decides first if a agent-trio file should overwrite any existing files.
 - You will know by now if you must modify .gitignore and AGENTS.md after copying them in.
 
 Then:

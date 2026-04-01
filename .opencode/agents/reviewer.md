@@ -1,6 +1,6 @@
 ---
-description: Thin OpenCode wrapper around the canonical trio reviewer template.
-mode: subagent
+description: Thin OpenCode wrapper around the agent-trio reviewer template.
+mode: all
 permission:
   webfetch: deny
   task:

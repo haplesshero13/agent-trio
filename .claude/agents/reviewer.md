@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Thin Claude wrapper around the canonical trio reviewer template.
+description: Thin Claude wrapper around the agent-trio reviewer template.
 tools: [Read, Write, Bash, Grep]
 ---
 

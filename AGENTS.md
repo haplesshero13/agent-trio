@@ -2,13 +2,13 @@
 
 ## Principles
 
-Always be kind to your ensemble; that also means not papering over hard truths to make someone feel good.
+Always be kind to your ensemble; that also means not papering over hard truths.
 
 1. **More reasoning, less waste** — the right plans increase quality progressively; time spent reworking generated code is wasted tokens.
-2. **Validate everything** — even the best LLMs make mistakes and are optimistic; the only ground truth is the real thing.
+2. **Validate everything** — even the best of us make mistakes and are optimistic; the only ground truth is the real thing.
 3. **Continuous improvement** — we learn with every iteration; capture them to reduce future mistakes.
 4. **Always be resumable** — the filesystem is the source of truth; we can resume from any state.
-5. **Autonomy, with friction** — verification and generation loops are autonomous; planning and reviewing require deliberation with a fresh context or human.
+5. **Autonomy, with friction** — verification and generation loops are autonomous; planning and reviewing require deliberation with another set of eyes.
 
 ## The loop
 
@@ -17,8 +17,10 @@ Always be kind to your ensemble; that also means not papering over hard truths t
 3. Build — head instance if cheap, or delegate to a builder agent.
 4. Builder writes `HANDOFF.md`: what was done, how to verify, what's unfinished.
 5. Reviewer evaluates in a **separate context** against `.trio/criteria.md`.
-   Writes `REVIEW.md`. Appends to `.trio/learnings.md`.
-6. Loop until APPROVED or ESCALATE.
+   Writes `REVIEW.md`.
+6. Head instance updates `LEARNINGS.md` with any durable lesson that should
+   change future planning, building, review, or validation.
+7. Loop until APPROVED or ESCALATE.
 
 The reviewer always evaluates with fresh eyes. The head instance plans; it does not review its own work.
 
@@ -26,17 +28,29 @@ The reviewer always evaluates with fresh eyes. The head instance plans; it does 
 
 ## Artifacts
 
-| File                 | Written by            | Read by                  |
-| -------------------- | --------------------- | ------------------------ |
-| `PLAN.md`            | head instance         | builder, reviewer        |
-| `HANDOFF.md`         | builder               | reviewer                 |
-| `REVIEW.md`          | reviewer              | builder, human           |
-| `.trio/criteria.md`  | human + head instance | reviewer only            |
-| `.trio/learnings.md` | reviewer (appends)    | builder (reads at start) |
+| File                | Written by            | Read by           |
+| ------------------- | --------------------- | ----------------- |
+| `PLAN.md`           | head instance         | builder, reviewer |
+| `HANDOFF.md`        | builder               | reviewer          |
+| `REVIEW.md`         | reviewer              | builder, human    |
+| `LEARNINGS.md`      | head instance         | builder, reviewer |
+| `.trio/criteria.md` | human + head instance | reviewer only     |
+
+A good artifact lets a human answer: what happened, why it happened, what evidence exists, what remains uncertain, and what should happen next.
 
 `.trio/criteria.md` is a gitignored holdout — a living conversation between the human and head instance that encodes what the reviewer validates against reality.
 
 `PLAN.md` contains: goal, constraints, done criteria, and ordered chunks. This is the spec for the current task.
+
+`LEARNINGS.md` keeps the current durable lessons close at hand (use source control to track its changes over time). The head agent owns this file, because the head owns long-range planning, context management, and agent coordination. Keep it human-readable, short, durable, and behavior-changing. Each learning should look like an understanding delta, not a diary entry:
+
+- What failed or was discovered
+- Why it matters
+- What changes next time
+- Where that change applies
+- Provenance or evidence
+
+Each entry should positively improve our collective continuous learning.
 
 ## Routing
 
@@ -51,24 +65,10 @@ When resuming, route based on file state:
 
 A restart, `/clear`, or model switch is normal. The filesystem artifacts recover phase, open questions, and confidence state.
 
-## Learnings
-
-`.trio/learnings.md` outlives any single conversation, model, or context window.
-Entries are insights that change future defaults, scoping, or review.
-
-Five lenses:
-
-1. **Specs** — did the spec cause or prevent the issue?
-2. **Review** — did fresh-context review catch something the builder couldn't?
-3. **Validation** — was the claim verified against running behavior?
-4. **Self-improvement** — is this a repeat? What prevents it next time?
-5. **Removal** — can any process step be dropped now?
-
-Format: insight first, provenance in parens. Append only.
-
 ## What to put where
 
 - Workflow rules → AGENTS.md
+- Current durable lessons → LEARNINGS.md
 - Starter templates → README
 - Code style → linter
 - Anything that could go stale → search the repo

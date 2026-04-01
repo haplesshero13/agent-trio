@@ -28,7 +28,8 @@ Then:
   if the human uses Claude-compatible tooling
 - add `.codex/agents/` and `.agents/skills/` if the human uses Codex
 - add `.opencode/agents/` and `.opencode/skills/` if the human uses OpenCode
-- create `.trio/learnings.md` (empty)
+- create `LEARNINGS.md` as a checked-in file for the repo's current,
+  behavior-changing lessons
 - create `.trio/criteria.md` and tell the future head agent and human to evolve the validation contract once real work begins
 - stop after the trio files are in place
 

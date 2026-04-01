@@ -2,7 +2,7 @@
 
 Read `README.md` for the repo purpose and principles.
 Read `AGENTS.md` for the workflow contract.
-Read `.trio/learnings.md` for prior lessons.
+Read `LEARNINGS.md` for prior lessons.
 Read `PLAN.md` for the current task.
 Read `REVIEW.md` if it exists and address `REJECTED` feedback first.
 

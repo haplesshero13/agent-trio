@@ -15,6 +15,7 @@ Use this repo by pointing your agent at `trio-agents/setup-agent.md` in this rep
 ## Quick file guide
 
 - `AGENTS.md`: the trio workflow contract
+- `LEARNINGS.md`: the checked-in lessons that still change how the next loop runs
 - `trio-agents/builder.md`: the builder subagent
 - `trio-agents/reviewer.md`: the reviewer subagent
 - `trio-agents/setup-agent.md`: the setup directive for turning a repo into a trio repo

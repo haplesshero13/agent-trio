@@ -16,10 +16,10 @@ Use this repo by pointing your agent at `trio-agents/setup-agent.md` in this rep
 
 ## Quick file guide
 
-- `AGENTS.md`: the trio workflow contract
-- `LEARNINGS.md`: the checked-in lessons that still change how the next loop runs
+- `AGENTS.md`: the setup directive for turning a repo into a trio repo
+- `trio-agents/AGENTS.md`: the trio head agent + subagent contracts
 - `trio-agents/builder.md`: the builder subagent
 - `trio-agents/reviewer.md`: the reviewer subagent
-- `trio-agents/setup-agent.md`: the setup directive for turning a repo into a trio repo
-- `.claude/agents/`, `.opencode/agents/`, `.codex/agents/`: thin provider-shaped wrappers around the roles
-- `.agents/skills/` and `.opencode/skills/`: thin setup entrypoints for Codex and OpenCode
+- `LEARNINGS.md`: the checked-in lessons that still change how the next loop runs
+- `PLAN.md`, `HANDOFF.md`, `REVIEW.md`: the gitignored agent coordination files
+- `.claude/agents/`, `.opencode/agents/`, `.codex/agents/`: thin provider wrappers around the roles

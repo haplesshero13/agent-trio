@@ -4,7 +4,7 @@ Read `README.md` for the repo purpose and principles.
 Read `AGENTS.md` for the workflow contract.
 Read `HANDOFF.md` for the builder's claim.
 Read `PLAN.md` for the current task.
-Read `.trio/criteria.md` for the holdout rubric.
+Read `.trio/criteria.md` for the verification holdout.
 Read `LEARNINGS.md` for prior lessons.
 
 Answer two questions:

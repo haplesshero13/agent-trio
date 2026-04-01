@@ -1,74 +1,32 @@
-# How to agent-trio
+# Trio Setup Agent
 
-## Principles
+Your job is to turn a brand new repo or an existing repo of any kind into a trio repo,
+or upgrade any existing target repo trio files to match the materials in this copy.
+`trio-agents/AGENTS.md` is the source material for the trio workflow contract.
+Your job is only to ask the setup questions, install or adapt the target repo, and stop.
 
-Always be kind to your ensemble; that also means not papering over hard truths.
+Read `README.md` for the purpose and recommendations.
 
-1. **More reasoning, less waste** — the right plans increase quality progressively; time spent reworking generated code is wasted tokens.
-2. **Validate everything** — even the best of us make mistakes and are optimistic; the only ground truth is the real thing.
-3. **Continuous improvement** — we learn with every iteration; capture them to reduce future mistakes.
-4. **Always be resumable** — the filesystem is the source of truth; we can resume from any state.
-5. **Autonomy, with friction** — verification and generation loops are autonomous; planning and reviewing require deliberation with another set of eyes.
+Ask the human these questions before installing provider files:
 
-## The loop
+1. What installed agent(s) should be the head agent for this repo? Default to the agent doing setup.
+2. Which optional, additional sub-agents should be installed and tested: Claude, Codex, OpenCode?
+3. For each additional sub-agent, copy in the subagent definitions and make note to the head agent inthe target repo's AGENTS.md of how to invoke them e.g. `claude --agent reviewer -p "Review this repo..."`.
+4. Does the user plan to gitignore any of the agent files and/or `trio-agents/`? Some users prefer to ignore agent files in the final repo. (We recommend checking them in.)
+5. Optional: if this is a brand new repo, do you want do any initializations? (New README, git init, git remote settings, package installs).
 
-1. Human states a goal. Head instance writes `PLAN.md`.
-2. Human confirms the plan.
-3. Build — head instance if cheap, or delegate to a builder agent.
-4. Builder writes `HANDOFF.md`: what was done, how to verify, what's unfinished.
-5. Reviewer evaluates in a **separate context** against `.trio/criteria.md`.
-   Writes `REVIEW.md`.
-6. Head instance updates `LEARNINGS.md` with any durable lesson that should
-   change future planning, building, review, or validation.
-7. Loop until APPROVED or ESCALATE.
+- Unless the setup requires modifying existing files, prefer cheap `cp` operations first.
+- Make sure the user decides first if a trio file should overwrite any existing files.
+- You will know by now if you must modify .gitignore and AGENTS.md after copying them in.
 
-The reviewer always evaluates with fresh eyes. The head instance plans; it does not review its own work.
+Then:
 
-`README.md` anchors repo-wide goals. `PLAN.md` scopes the current task.
-
-## Artifacts
-
-| File                | Written by            | Read by           |
-| ------------------- | --------------------- | ----------------- |
-| `PLAN.md`           | head instance         | builder, reviewer |
-| `HANDOFF.md`        | builder               | reviewer          |
-| `REVIEW.md`         | reviewer              | builder, human    |
-| `LEARNINGS.md`      | head instance         | builder, reviewer |
-| `.trio/criteria.md` | human + head instance | reviewer only     |
-
-A good artifact lets a human answer: what happened, why it happened, what evidence exists, what remains uncertain, and what should happen next.
-
-`.trio/criteria.md` is a gitignored holdout — a living conversation between the human and head instance that encodes what the reviewer validates against reality.
-
-`PLAN.md` contains: goal, constraints, done criteria, and ordered chunks. This is the spec for the current task.
-
-`LEARNINGS.md` keeps the current durable lessons close at hand (use source control to track its changes over time). The head agent owns this file, because the head owns long-range planning, context management, and agent coordination. Keep it human-readable, short, durable, and behavior-changing. Each learning should look like an understanding delta, not a diary entry:
-
-- What failed or was discovered
-- Why it matters
-- What changes next time
-- Where that change applies
-- Provenance or evidence
-
-Each entry should positively improve our collective continuous learning.
-
-## Routing
-
-When resuming, route based on file state:
-
-- Read `README.md` for overall goals
-- No PLAN.md → write one, confirm with human, then build
-- PLAN.md confirmed, no HANDOFF.md → build
-- HANDOFF.md newer than REVIEW.md → review
-- REVIEW.md says APPROVED → next chunk (or done)
-- REVIEW.md says ESCALATE → ask the human
-
-A restart, `/clear`, or model switch is normal. The filesystem artifacts recover phase, open questions, and confidence state.
-
-## What to put where
-
-- Workflow rules → AGENTS.md
-- Current durable lessons → LEARNINGS.md
-- Starter templates → README
-- Code style → linter
-- Anything that could go stale → search the repo
+- create a minimal `README.md` if there is none
+- copy this repo's `trio-agents/AGENTS.md` into the target repo as the workflow contract, naming the target file for the head agent (`AGENTS.md`, `CLAUDE.md`, etc.)
+- copy `.claude/agents/` if the human uses Claude Code
+- copy `.codex/agents/` if the human uses Codex
+- copy `.opencode/agents/` if the human uses OpenCode
+- symlink `AGENTS.md`, `CLAUDE.md` if the human uses Claude Code
+- copy `LEARNINGS.md` and create `.trio/criteria.md` for the future head agent and human
+- ensure the .gitignore is copied in, or contents appended to the target repo's .gitignore
+- any optional setup tasks you received

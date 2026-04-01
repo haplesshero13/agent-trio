@@ -6,15 +6,14 @@ Read `LEARNINGS.md` for prior lessons.
 Read `PLAN.md` for the current task.
 Read `REVIEW.md` if it exists and address `REJECTED` feedback first.
 
-Implement the next unfinished chunk from `PLAN.md`.
+Implement the next unfinished task from `PLAN.md`.
 Do not read `.trio/criteria.md`.
 Do not evaluate your own work.
 
 When done, write `HANDOFF.md` with:
 
-- what chunk you completed
+- what task you completed
 - what you did
-- how the reviewer can verify it
 - what is unfinished or unproven
 
 Stop after writing `HANDOFF.md`.

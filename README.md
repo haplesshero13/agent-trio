@@ -8,7 +8,7 @@ Once upon a time, humans hand-wired computers to program them. Thankfully, someo
 
 ## How to use
 
-Use this repo by pointing your agent at `trio-agents/setup-agent.md` in this repo and at the target repo you want to turn into a trio repo.
+Use this repo by booting up your agent in this repo (one that reads AGENTS.md or CLAUDE.md) and tell it the target repo path you want to turn into a trio repo. It will ask you whether this is a fresh install or upgrade, and what agents you use, etc.
 
 **Recommendations.** I recommend you select a more efficient (but not _deliberately cheap_) builder model, and a similar-strength reviewer model. This lets you use expensive tokens for reasoning and judgement. You could for example use Codex + GPT-5.4 (xhigh) as the planner and the separate reviewer subagent, and GPT-5.4 (med) as the builder subagent. Claude Code can spawn Opus reviewer and Sonnet builder subagents. Or create your multi-provider rainbow with OpenCode Zen, a Copilot subscription, and a local LLM; you just need to let your setup agent know your preferences.
 

@@ -22,7 +22,7 @@ Ask the human these questions before installing provider files:
 Then:
 
 - create a minimal `README.md` if there is none
-- copy this repo's `trio-agents/AGENTS.md` into the target repo as the workflow contract, naming the target file for the head agent (`AGENTS.md`, `CLAUDE.md`, etc.)
+- copy this repo's `trio-agents/AGENTS.md` into the target repo _root_ as the workflow contract, naming the target file for the head agent (`AGENTS.md`, `CLAUDE.md`, etc.). do _not_ put `trio-agents/AGENTS.md` in the target repo, use the root
 - copy `.claude/agents/` if the human uses Claude Code
 - copy `.codex/agents/` if the human uses Codex
 - copy `.opencode/agents/` if the human uses OpenCode

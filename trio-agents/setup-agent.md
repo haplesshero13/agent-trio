@@ -31,3 +31,7 @@ Then:
 - create `.trio/learnings.md` (empty)
 - create `.trio/criteria.md` and tell the future head agent and human to evolve the validation contract once real work begins
 - stop after the trio files are in place
+
+## Gitignore
+
+Ensure the contents of the .gitignore are copied or appended to the target repo. Ask if the user plans to gitignore any of the agent directories and/or `trio-agents/`. They are checked into the bootstrap repo by necessity, but some users prefer to ignore agent files in the final repo.

@@ -1,21 +1,14 @@
-# Workflow
+# How to agent-trio
 
-## The one rule
+## Principles
 
-The reviewer always evaluates in a separate context, with fresh eyes.
-The head instance plans. It can build directly or delegate.
+Always be kind to your ensemble; that also means not papering over hard truths to make someone feel good.
 
-## PLAN.md contract
-
-When the head instance writes `PLAN.md`, it contains:
-
-- **Goal** — what success looks like, in observable terms
-- **Constraints** — architectural boundaries, non-goals, things to avoid
-- **Done criteria** — behavioral contract, intentionally implementation-agnostic
-- **Ordered chunks** — work broken into reviewable units
-
-This is the spec.
-`README.md` is the source of overall repo goals. `PLAN.md` is the current-task spec.
+1. **More reasoning, less waste** — the right plans increase quality progressively; time spent reworking generated code is wasted tokens.
+2. **Validate everything** — even the best LLMs make mistakes and are optimistic; the only ground truth is the real thing.
+3. **Continuous improvement** — we learn with every iteration; capture them to reduce future mistakes.
+4. **Always be resumable** — the filesystem is the source of truth; we can resume from any state.
+5. **Autonomy, with friction** — verification and generation loops are autonomous; planning and reviewing require deliberation with a fresh context or human.
 
 ## The loop
 
@@ -27,37 +20,41 @@ This is the spec.
    Writes `REVIEW.md`. Appends to `.trio/learnings.md`.
 6. Loop until APPROVED or ESCALATE.
 
+The reviewer always evaluates with fresh eyes. The head instance plans; it does not review its own work.
+
+`README.md` anchors repo-wide goals. `PLAN.md` scopes the current task.
+
 ## Artifacts
 
-| File                 | Written by               | Read by                  |
-| -------------------- | ------------------------ | ------------------------ |
-| `PLAN.md`            | head instance            | builder, reviewer        |
-| `HANDOFF.md`         | builder                  | reviewer                 |
-| `REVIEW.md`          | reviewer                 | builder, human           |
-| `.trio/criteria.md`  | human + head instance    | reviewer only            |
-| `.trio/learnings.md` | reviewer (appends)       | builder (reads at start) |
+| File                 | Written by            | Read by                  |
+| -------------------- | --------------------- | ------------------------ |
+| `PLAN.md`            | head instance         | builder, reviewer        |
+| `HANDOFF.md`         | builder               | reviewer                 |
+| `REVIEW.md`          | reviewer              | builder, human           |
+| `.trio/criteria.md`  | human + head instance | reviewer only            |
+| `.trio/learnings.md` | reviewer (appends)    | builder (reads at start) |
 
-## Criteria
+`.trio/criteria.md` is a gitignored holdout — a living conversation between the human and head instance that encodes what the reviewer validates against reality.
 
-`.trio/criteria.md` is a gitignored holdout file and a living conversation
-between the human and the head instance. It is not fire-and-forget.
-Its job is to encode what the reviewer must validate against reality.
+`PLAN.md` contains: goal, constraints, done criteria, and ordered chunks. This is the spec for the current task.
 
 ## Routing
 
 When resuming, route based on file state:
 
-- First, read `README.md` for the repo's overall goals
+- Read `README.md` for overall goals
 - No PLAN.md → write one, confirm with human, then build
 - PLAN.md confirmed, no HANDOFF.md → build
 - HANDOFF.md newer than REVIEW.md → review
 - REVIEW.md says APPROVED → next chunk (or done)
 - REVIEW.md says ESCALATE → ask the human
 
+A restart, `/clear`, or model switch is normal. The filesystem artifacts recover phase, open questions, and confidence state.
+
 ## Learnings
 
 `.trio/learnings.md` outlives any single conversation, model, or context window.
-Entries are insights that help the builder orient and the reviewer understand patterns.
+Entries are insights that change future defaults, scoping, or review.
 
 Five lenses:
 
@@ -69,12 +66,7 @@ Five lenses:
 
 Format: insight first, provenance in parens. Append only.
 
-## Resumability
-
-A restart, `/clear`, or model switch is normal. The filesystem artifacts
-recover phase, open questions, and confidence state.
-
-## What not to put here
+## What to put where
 
 - Workflow rules → AGENTS.md
 - Starter templates → README

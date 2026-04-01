@@ -1,28 +1,22 @@
-# trio
+# agent trio
 
-A minimal bootstrap for brand new or existing repos of any kind that want agents to follow the same five principles.
-Zero code. All natural language.
-Use it by pointing your agent at `trio-agents/setup-agent.md` in this repo and at the target repo you want to turn into a trio repo.
-That setup task is meta-work: install or adapt the trio files first, then stop before starting the target repo's first trio loop.
-For setup, `AGENTS.md` in this repo is source material to copy into the target repo, not instructions for the setup agent to follow.
+A minimal, all natural language bootstrap for brand new or existing repos of any kind that want to follow principled agentic coding. Zero code.
 
-## Design principles
+**agent trio** is not a swarm framework. It does not optimize for agent count or lines of code output. It is for introducing _just the right amount of friction_. You should spend tokens to maximize judgement and quality, not output or wasteful rework. Trio helps you do that.
 
-1. **Focus on the specs** — the right specs result in the right output; small errors up front compound and cascade.
-2. **Multiple review loops** — even the best models make errors; double-check all work with fresh contexts.
-3. **Validate or it isn't real** — LLMs are optimistic by nature; running systems are the only ground truth.
-4. **Self-improving** — making the same mistake twice is a failure of the system; capture and spread learnings.
-5. **Resumability** — the system survives restarts, crashes, and handoffs; all state persists in the filesystem.
+Once upon a time, humans hand-wired computers to program them. Thankfully, someone invented ~~silicon chips~~ coding agents.
 
-## What This Repo Contains
+## How to use
 
-- `AGENTS.md`: the canonical trio workflow contract
-- `trio-agents/builder.md`: the canonical builder role
-- `trio-agents/reviewer.md`: the canonical reviewer role
-- `trio-agents/setup-agent.md`: the canonical setup directive for turning a repo into a trio repo
-- `.claude/agents/`, `.opencode/agents/`, `.codex/agents/`: thin provider-shaped wrappers around the canonical roles
+Use this repo by pointing your agent at `trio-agents/setup-agent.md` in this repo and at the target repo you want to turn into a trio repo.
+
+**For agents reading this:** The setup task is meta-work: install or adapt the trio files first to the new project, then stop. For setup, `AGENTS.md` in this repo is source material to copy into the target repo, not instructions for the setup agent to follow.
+
+## Quick file guide
+
+- `AGENTS.md`: the trio workflow contract
+- `trio-agents/builder.md`: the builder subagent
+- `trio-agents/reviewer.md`: the reviewer subagent
+- `trio-agents/setup-agent.md`: the setup directive for turning a repo into a trio repo
+- `.claude/agents/`, `.opencode/agents/`, `.codex/agents/`: thin provider-shaped wrappers around the roles
 - `.agents/skills/` and `.opencode/skills/`: thin setup entrypoints for Codex and OpenCode
-
-Use this README for the principles and repo purpose.
-Use `AGENTS.md` for the workflow.
-Use `trio-agents/setup-agent.md` when turning a repo into a trio repo.

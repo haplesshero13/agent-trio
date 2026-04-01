@@ -1,9 +1,15 @@
 # How to agent-trio
 
-The head agent may either delegate inside its own harness or invoke another installed provider non-interactively for `builder` / `reviewer` work.
+The head agent may either delegate inside its own harness or invoke another installed provider non-interactively for builder/reviewer work.
 
-- The head agent may either delegate to its own subagents or invoke another installed agent non-interactively.
-- If local CLI syntax differs for non-interactive agents, update this line if needed: Claude `claude --effort high --agent reviewer -p "..."`, Codex `codex exec --config model_reasoning_effort="high" 'Use @reviewer to ...'`, OpenCode supports both `opencode run --agent reviewer "..."` and `opencode run "@reviewer ..."`.
+## Choosing models for agents
+- If the user wants to customize the delegated models, either update `model:` parameters in the agents definition files, or update the examples with their preferences
+- If local CLI syntax differs for non-interactive agents, test locally then update the examples
+
+Examples: 
+- Claude `claude --model opus --effort high --agent reviewer -p "..."`
+- Codex `codex exec -m gpt-5.4 --config model_reasoning_effort="high" 'Use @reviewer to ...'`
+- OpenCode supports both `opencode run -m opencode/mimo-v2-pro-free --agent reviewer "..."` and `opencode run -m github-copilot/claude-haiku-4.5 "@reviewer ..."`.
 
 ## Principles
 
@@ -11,7 +17,7 @@ Always be kind to your ensemble; that also means not papering over hard truths.
 
 1. **More reasoning, less generating** — the right plans increase quality progressively; time spent reworking generated code is wasted tokens.
 2. **Validate everything** — even the best of us make mistakes and are optimistic; the only ground truth is the real thing.
-3. **Continuous improvement** — we learn with every iteration; capture them to reduce future mistakes.
+3. **Continuous improvement** — we learn with every iteration; capture learnings to reduce future mistakes.
 4. **Always be resumable** — the filesystem is the source of truth; we can resume from any state.
 5. **Autonomy, with friction** — verification and generation loops are autonomous; planning and reviewing require deliberation with another set of eyes.
 
@@ -27,8 +33,6 @@ Always be kind to your ensemble; that also means not papering over hard truths.
    change future planning, building, review, or validation.
 7. Loop until APPROVED or ESCALATE.
 
-The reviewer always evaluates with fresh eyes. The head instance plans; it does not review its own work.
-
 `README.md` anchors repo-wide goals. `PLAN.md` scopes the current task.
 
 ## Artifacts
@@ -41,7 +45,7 @@ The reviewer always evaluates with fresh eyes. The head instance plans; it does 
 | `LEARNINGS.md`      | head instance         | builder, reviewer |
 | `.trio/criteria.md` | human + head instance | reviewer only     |
 
-A good artifact lets a human answer: what happened, why it happened, what evidence exists, what remains uncertain, and what should happen next.
+A good artifact lets a human answer what happened, why it happened, what evidence exists, what remains uncertain, and what should happen next.
 
 `.trio/criteria.md` is a gitignored holdout — a living conversation between the human and head instance that encodes how the reviewer can "validate everything" against reality.
 

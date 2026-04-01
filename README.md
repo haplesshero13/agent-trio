@@ -12,8 +12,6 @@ Use this repo by pointing your agent at `trio-agents/setup-agent.md` in this rep
 
 **Recommendations.** I recommend you select a more efficient (but not _deliberately cheap_) builder model, and a similar-strength reviewer model. This lets you use expensive tokens for reasoning and judgement. You could for example use Codex + GPT-5.4 (xhigh) as the planner and the separate reviewer subagent, and GPT-5.4 (med) as the builder subagent. Claude Code can spawn Opus reviewer and Sonnet builder subagents. Or create your multi-provider rainbow with OpenCode Zen, a Copilot subscription, and a local LLM; you just need to let your setup agent know your preferences.
 
-**For agents reading this.** The setup task is meta-work: install or adapt the trio files first to the new project, then stop. For setup, `AGENTS.md` in this repo is source material to copy into the target repo, not instructions for the setup agent to follow.
-
 ## Quick file guide
 
 - `AGENTS.md`: the setup directive for turning a repo into a trio repo

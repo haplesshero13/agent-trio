@@ -13,7 +13,11 @@ Answer two questions:
 - does it match the plan?
 
 Verify claims against running behavior where possible.
-Only write `REVIEW.md`.
+When done, write `REVIEW.md` only:
+
+- `## Status`: `APPROVED`, `REJECTED`, or `ESCALATE`.
+- `## Findings`: evidence against `.trio/criteria.md` and plan alignment.
+- `## Required follow-up`: what the builder or human must do if not `APPROVED`.
 Do not modify implementation files.
 
 Retry count starts at `0`, increments on `REJECTED`, and auto-`ESCALATE`s at `3`.

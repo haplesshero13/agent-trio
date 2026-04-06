@@ -53,23 +53,10 @@ Both should stay minimal: only include what is needed to guide the current task 
 
 **Minimum required sections:**
 
-- `PLAN.md`:
-  - `## Goal`
-  - `## Constraints`
-  - `## Done criteria`
-  - `## Slices` when the task benefits from vertical slices
-- `.trio/criteria.md`:
-  - `## Verification`
-  - `## Acceptance criteria`
-  - `## Evidence`
-- `HANDOFF.md`:
-  - `## Completed`
-  - `## Remaining`
-  - `## Blockers` when anything is still blocked or uncertain
-- `REVIEW.md`:
-  - `## Status`
-  - `## Findings`
-  - `## Required follow-up` when status is not `APPROVED`
+- `PLAN.md`: `## Goal`, `## Constraints`, `## Done criteria`, `## Slices` (as needed)
+- `.trio/criteria.md`: `## Verification`, `## Acceptance criteria`, `## Evidence`
+- `HANDOFF.md`: `## Completed`, `## Remaining`, `## Blockers`
+- `REVIEW.md`: `## Status`, `## Findings`, `## Required follow-up`
 
 Keep everything else up to the agent's judgment unless the current task truly needs more structure.
 

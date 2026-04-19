@@ -10,6 +10,9 @@
   "repository": "https://github.com/haplesshero13/agent-trio",
   "license": "MIT",
   "main": ".opencode/plugins/agent-trio.js",
+  "oc-plugin": [
+    "tui"
+  ],
   "keywords": [
     "agents",
     "workflow",

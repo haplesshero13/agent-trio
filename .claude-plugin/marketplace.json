@@ -1,0 +1,14 @@
+{
+  "name": "trio-marketplace",
+  "owner": {
+    "name": "Avery Yen"
+  },
+  "plugins": [
+    {
+      "name": "agent-trio",
+      "description": "Principled agentic coding: plan → build → review → learn workflow with builder and reviewer subagents.",
+      "source": "./",
+      "homepage": "https://github.com/haplesshero13/agent-trio"
+    }
+  ]
+}

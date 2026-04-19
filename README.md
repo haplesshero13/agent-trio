@@ -33,16 +33,6 @@ Or add to your project's `.claude/settings.json`:
 }
 ```
 
-**OpenCode:**
-
-Add to your `opencode.json`:
-
-```json
-{ "plugin": ["agent-trio@git+https://github.com/haplesshero13/agent-trio.git"] }
-```
-
-See `.opencode/INSTALL.md` for details.
-
 **Codex:**
 
 ```bash
@@ -54,9 +44,28 @@ The skill operates in `consult`, `plan`, or `execute` mode depending on what you
 
 See `.codex/INSTALL.md` for full details and examples.
 
-**Cursor:**
+**OpenCode:**
 
-Search for "agent-trio" in the plugin marketplace, or see `.cursor-plugin/plugin.json` for manual setup.
+Add agent-trio to the `plugin` array in your `opencode.json`:
+
+```json
+{
+  "plugin": ["agent-trio@git+https://github.com/haplesshero13/agent-trio.git"]
+}
+```
+
+Restart OpenCode. The plugin registers the repo-root `skills/` and `agents/` directories, so `using-agent-trio`, `@builder`, and `@reviewer` become available.
+
+See `.opencode/INSTALL.md` for details.
+
+## Interactive setup
+
+Once agent-trio is installed, run the setup flow to pick builder/reviewer models and peer-review preferences without hand-editing config:
+
+- **Claude Code:** `/agent-trio:setup`
+- **OpenCode / Codex / any other platform:** ask the head agent to "run agent-trio setup" — it will read `setup/agent-trio-setup.md` and walk you through the same choices.
+
+The setup flow only writes to files it tells you about first; see `setup/agent-trio-setup.md` for the full list of files it may create or modify per platform.
 
 ## Quick file guide
 
@@ -65,5 +74,8 @@ Search for "agent-trio" in the plugin marketplace, or see `.cursor-plugin/plugin
 - `agents/builder.md`, `agents/reviewer.md`: the builder/reviewer agent definitions
 - `LEARNINGS.md`: the checked-in lessons that still change how the next loop runs
 - `PLAN.md`, `HANDOFF.md`, `REVIEW.md`: the gitignored agent coordination files
-- `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`: provider wrappers around the roles
-- `.claude-plugin/`, `.cursor-plugin/`: plugin manifests for marketplace distribution
+- `.claude/agents/`, `.codex/agents/`: provider wrappers around the roles
+- `.opencode/`: OpenCode plugin — `plugins/agent-trio.js`, `package.json`, `INSTALL.md`
+- `.claude-plugin/`: plugin manifest for marketplace distribution
+- `commands/setup.md`: `/agent-trio:setup` slash command for Claude Code
+- `setup/agent-trio-setup.md`: platform-neutral interactive setup instructions

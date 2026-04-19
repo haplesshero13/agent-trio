@@ -7,8 +7,7 @@ This is a skill/plugin repo. The workflow contract is `skills/using-agent-trio/S
 1. Edit content in `skills/` or `agents/`.
 2. Do **not** duplicate content into wrappers — wrappers say "Read `agents/builder.md` and follow it exactly."
 3. Run `claude plugin validate .` to check that `.claude-plugin/plugin.json` is valid.
-4. If you change the skill, the OpenCode plugin (`agent-trio.js`) reads it at runtime — no rebuild needed.
-5. If you add a new agent or skill, update the relevant plugin manifest.
+4. If you add a new agent or skill, update the relevant plugin manifest.
 
 ## Validation checklist
 
@@ -25,3 +24,13 @@ This is a skill/plugin repo. The workflow contract is `skills/using-agent-trio/S
 - Start instructions → README
 - Code style → linter
 - Anything that could go stale → search the repo
+- Interactive setup content → `setup/agent-trio-setup.md` (platform-neutral; wrappers like `commands/setup.md` must only point at it)
+
+## Setup flow and file ownership
+
+`setup/agent-trio-setup.md` is the single source of truth for what the
+`agent-trio setup` flow may write. If you add a platform or a new
+configurable choice, update that file — not the slash command wrapper and
+not individual platform docs. The per-platform **Generated output** table
+there is intentionally restrictive: setup must never modify files outside
+the listed set without prompting the user first.

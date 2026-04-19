@@ -187,10 +187,6 @@ Every platform dispatches with one of the prompts above. The invocation shell di
 
 **Claude Code:** `@builder` / `@reviewer`, or `claude --agent builder -p "<prompt>"` for non-interactive dispatch.
 
-**Cursor:** `@builder` / `@reviewer` in agent chat.
-
-**OpenCode:** `@builder` / `@reviewer`.
-
 **Codex:**
 
 *Skill discovery (global):* The install symlinks the skill to `~/.codex/skills/using-agent-trio`, making `using-agent-trio` discoverable from any working directory regardless of project. This is a globally available skill.
@@ -214,6 +210,19 @@ A request like "Draft a plan for migrating X to Y" should produce `PLAN.md` and 
 
 *Example: full execution in a checkout:*
 A request like "Implement the next task in PLAN.md" enters execute mode. If `.codex/agents/` contains builder/reviewer wrappers, dispatch them. Otherwise, act as builder locally, then switch to reviewer locally, honoring the artifact holdout rules.
+
+**OpenCode:**
+
+Install via `opencode.json` plugin array (see `.opencode/INSTALL.md`). The plugin at `.opencode/plugins/agent-trio.js` registers the repo-root `skills/` and `agents/` directories with OpenCode — the workflow contract and role prompts are the same files used by every other platform.
+
+*Dispatching when agents are available:*
+
+```
+@builder You are acting as the builder. Read agents/builder.md and follow it.
+@reviewer You are acting as the reviewer. Read agents/reviewer.md and follow it.
+```
+
+If `@builder`/`@reviewer` are not resolvable (for example, the plugin is not installed or the repo is not cloned to a reachable location), the head instance may act as builder or reviewer locally, honoring the artifact hold-out rules.
 
 **Copilot CLI:** Load the `using-agent-trio` skill, then dispatch with the role prompt.
 

@@ -21,7 +21,7 @@ The original `trio-agents/AGENTS.md` described the loop in third person. The rev
 
 ### Plugin manifests are per-platform, not generic
 
-`.claude-plugin/plugin.json` does not support an `agents` field — it caused validation to fail. Each platform discovers agents differently (Claude Code from `.claude/agents/`, OpenCode from plugin config hook, Codex from `~/.agents/skills/`). Don't assume cross-platform consistency in manifest schemas.
+`.claude-plugin/plugin.json` does not support an `agents` field — it caused validation to fail. Each platform discovers agents differently (Claude Code from `.claude/agents/`, Codex from `~/.codex/skills/`). Don't assume cross-platform consistency in manifest schemas.
 **Why:** A single validation failure blocks the entire plugin from loading.
 **How to apply:** Run `claude plugin validate .` after any manifest change. Don't add fields that aren't in the platform's schema.
 

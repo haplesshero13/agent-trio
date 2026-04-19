@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Principled agentic coding: plan → build → review → learn workflow with builder and reviewer subagents",
-  "main": ".opencode/plugins/agent-trio.js",
   "author": {
     "name": "Avery Yen"
   },
   "homepage": "https://github.com/haplesshero13/agent-trio",
   "repository": "https://github.com/haplesshero13/agent-trio",
   "license": "MIT",
+  "main": ".opencode/plugins/agent-trio.js",
   "keywords": [
     "agents",
     "workflow",

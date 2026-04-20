@@ -20,7 +20,7 @@ This is a skill/plugin repo. The workflow contract is `skills/using-agent-trio/S
 ## What to put where
 
 - Workflow rules → `skills/using-agent-trio/SKILL.md`
-- Current durable lessons → LEARNINGS.md
+- Current durable lessons → .trio/learnings.md
 - Start instructions → README
 - Code style → linter
 - Anything that could go stale → search the repo

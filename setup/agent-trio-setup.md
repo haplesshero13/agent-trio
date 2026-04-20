@@ -96,7 +96,7 @@ showing the user what would change and why.
 
 Print a short summary: platform, builder model, reviewer model, peer
 choice, access mode, and the list of files you wrote. Point the user at
-the agent-trio workflow (`PLAN.md` → `HANDOFF.md` → `REVIEW.md`) as next
+the agent-trio workflow (`.trio/plan.md` → `.trio/handoff.md` → `.trio/review.md`) as next
 steps.
 
 ## Generated output
@@ -166,8 +166,8 @@ the user should use and does not write any files.
   only.
 - `agents/builder.md` / `agents/reviewer.md` — authoritative role prompts;
   human-edited only.
-- `LEARNINGS.md` — written by the head agent during the learn phase.
-- `PLAN.md`, `HANDOFF.md`, `REVIEW.md`, `.trio/criteria.md` — loop
+- `.trio/learnings.md` — written by the head agent during the learn phase.
+- `.trio/plan.md`, `.trio/handoff.md`, `.trio/review.md`, `.trio/criteria.md` — loop
   artifacts owned by plan/build/review phases, not by setup.
 
 If the user asks setup to modify any of these, refuse and explain that

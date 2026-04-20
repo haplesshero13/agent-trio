@@ -45,7 +45,7 @@ The symlink makes `using-agent-trio` available in any working directory. Codex l
 `.codex/agents/builder.toml` and `.codex/agents/reviewer.toml` are thin wrappers that point to `agents/builder.md` and `agents/reviewer.md`. They are only available when Codex runs inside a clone of this repo. If you want to use the builder/reviewer agents in your own project, you must copy **both** the `.toml` wrappers (`from .codex/agents/`) **and** the markdown templates (`from agents/builder.md` and `agents/reviewer.md`) into the corresponding locations in your project. Copying only the `.toml` wrappers is not sufficient — they will fail to load because `agents/builder.md` and `agents/reviewer.md` will not exist.
 
 **Without repo-local agents:**
-If builder/reviewer wrappers are not present, Codex acts as builder or reviewer locally, still honoring the full artifact contract (`PLAN.md`, `.trio/criteria.md`, `HANDOFF.md`, `REVIEW.md`).
+If builder/reviewer wrappers are not present, Codex acts as builder or reviewer locally, still honoring the full artifact contract (`.trio/plan.md`, `.trio/criteria.md`, `.trio/handoff.md`, `.trio/review.md`).
 
 ## Updating
 

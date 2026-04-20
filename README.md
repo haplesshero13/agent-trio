@@ -72,8 +72,8 @@ The setup flow only writes to files it tells you about first; see `setup/agent-t
 - `AGENTS.md`: developer guide — repo structure, how to make changes, validation checklist
 - `skills/using-agent-trio/SKILL.md`: the workflow contract (imperative, with first-session bootstrap and delegation)
 - `agents/builder.md`, `agents/reviewer.md`: the builder/reviewer agent definitions
-- `LEARNINGS.md`: the checked-in lessons that still change how the next loop runs
-- `PLAN.md`, `HANDOFF.md`, `REVIEW.md`: the gitignored agent coordination files
+- `.trio/learnings.md`: the checked-in lessons that still change how the next loop runs
+- `.trio/plan.md`, `.trio/handoff.md`, `.trio/review.md`: the gitignored agent coordination files
 - `.claude/agents/`, `.codex/agents/`: provider wrappers around the roles
 - `.opencode/`: OpenCode plugin — `plugins/agent-trio.js`, `package.json`, `INSTALL.md`
 - `.claude-plugin/`: plugin manifest for marketplace distribution

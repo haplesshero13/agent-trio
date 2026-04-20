@@ -15,7 +15,7 @@ The workflow contract lives in `skills/using-agent-trio/SKILL.md` — nowhere el
 
 ### Skill must be imperative, not descriptive
 
-The original `trio-agents/AGENTS.md` described the loop in third person. The reviewer flagged that this meant the plugin could load and still do nothing — the agent reads a description but doesn't know what to do. Rewriting as imperative ("You are the head agent. Write PLAN.md. Delegate to builder.") made the skill effective.
+The original `trio-agents/AGENTS.md` described the loop in third person. The reviewer flagged that this meant the plugin could load and still do nothing — the agent reads a description but doesn't know what to do. Rewriting as imperative ("You are the head agent. Write .trio/plan.md. Delegate to builder.") made the skill effective.
 **Why:** A plugin that loads but doesn't change agent behavior is dead weight.
 **How to apply:** When writing agent instructions, address the agent directly with commands, not descriptions of how things work.
 
@@ -39,7 +39,7 @@ AGENTS.md describes how to modify this repo. README describes why you'd use it a
 
 ### Codex works as a peer reviewer via `codex exec`
 
-A one-shot `codex exec --full-auto --skip-git-repo-check` with a reviewer prompt (read the loop artifacts, verify claims by running commands, write REVIEW.md) produces a real adversarial review. It caught a criterion/repo mismatch the same-model reviewer would likely have missed.
+A one-shot `codex exec --full-auto --skip-git-repo-check` with a reviewer prompt (read the loop artifacts, verify claims by running commands, write .trio/review.md) produces a real adversarial review. It caught a criterion/repo mismatch the same-model reviewer would likely have missed.
 **Why:** Adversarial review across model families surfaces a different class of findings than same-family review.
 **How to apply:** For loops where the stakes or scope justify it, dispatch Codex (or any peer runtime) as the reviewer instead of `@reviewer`. The head keeps owning PLAN, criteria, and LEARNINGS.
 
@@ -69,7 +69,7 @@ The original install instructions in README.md and .codex/INSTALL.md documented 
 
 ### Agent instructions must be internally consistent with SKILL.md routing
 
-`SKILL.md` defined routing logic that depended on builder status keywords and reviewer retry counts, but neither `builder.md` nor `reviewer.md` had instructions to produce those values. The routing in `SKILL.md` was effectively dead code. The fix was to add `## Status` to the builder's HANDOFF format and make the reviewer read its own prior `REVIEW.md` for the retry count before overwriting it.
+`SKILL.md` defined routing logic that depended on builder status keywords and reviewer retry counts, but neither `builder.md` nor `reviewer.md` had instructions to produce those values. The routing in `SKILL.md` was effectively dead code. The fix was to add `## Status` to the builder's HANDOFF format and make the reviewer read its own prior `.trio/review.md` for the retry count before overwriting it.
 **Why:** A head-agent routing table is only as good as the data the subagents actually write. If you add routing logic to `SKILL.md`, always trace back to whether the builder or reviewer is instructed to emit the values that logic depends on.
 **How to apply:** When adding a new routing branch to `SKILL.md`, immediately check `builder.md` and `reviewer.md` to confirm they produce the required output. Treat them as a three-file system, not independent documents.
 
@@ -81,12 +81,12 @@ The local fallback path instructs the head agent to "not read `.trio/criteria.md
 
 ### Smoke tests must run from scratch, not be inherited from prior builds
 
-The previous build cycle's HANDOFF.md carried forward Tests 4 and 5 as "evidence" without re-running them. The reviewer caught that Tests 1–3 lacked actual command output, and that Test 5 bypassed the head-agent path entirely. The fix required re-running all five tests with real commands and real output.
+The previous build cycle's .trio/handoff.md carried forward Tests 4 and 5 as "evidence" without re-running them. The reviewer caught that Tests 1–3 lacked actual command output, and that Test 5 bypassed the head-agent path entirely. The fix required re-running all five tests with real commands and real output.
 **Why:** "Carried forward from previous build" is not evidence. The reviewer cannot verify claims that have no command transcript attached.
-**How to apply:** Every smoke test in HANDOFF.md must include the actual command run and the actual output observed. Never summarize or inherit. If re-running a test is impractical, say so explicitly in Blockers — don't quietly forward a prior result.
+**How to apply:** Every smoke test in .trio/handoff.md must include the actual command run and the actual output observed. Never summarize or inherit. If re-running a test is impractical, say so explicitly in Blockers — don't quietly forward a prior result.
 
 ### Criteria and repo shape drift together
 
-When you delete a concept from the repo, audit `.trio/criteria.md` in the same loop. A stale criterion (e.g. "grep for trio-agents returns nothing across all .md") can fail against a repo that is otherwise correct, because LEARNINGS.md intentionally keeps historical mentions.
+When you delete a concept from the repo, audit `.trio/criteria.md` in the same loop. A stale criterion (e.g. "grep for trio-agents returns nothing across all .md") can fail against a repo that is otherwise correct, because .trio/learnings.md intentionally keeps historical mentions.
 **Why:** The reviewer runs the criterion exactly as written; over-broad criteria cause false REJECTs.
 **How to apply:** When retiring a concept, scope the matching criterion (and its grep) to where the concept should no longer appear, not everywhere.

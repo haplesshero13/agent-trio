@@ -17,12 +17,17 @@ Enable agent-trio skills in Codex via native skill discovery.
 2. **Create the skills symlink:**
 
    ```bash
-   ln -s ~/.codex/agent-trio/skills/using-agent-trio ~/.codex/skills/using-agent-trio
+   mkdir -p ~/.codex/skills
+   ln -sfn ~/.codex/agent-trio/skills/using-agent-trio ~/.codex/skills/using-agent-trio
    ```
 
    **Windows (PowerShell):**
 
    ```powershell
+   New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
+   if (Test-Path "$env:USERPROFILE\.codex\skills\using-agent-trio") {
+     Remove-Item "$env:USERPROFILE\.codex\skills\using-agent-trio" -Force
+   }
    cmd /c mklink /J "$env:USERPROFILE\.codex\skills\using-agent-trio" "$env:USERPROFILE\.codex\agent-trio\skills\using-agent-trio"
    ```
 
@@ -50,7 +55,8 @@ If builder/reviewer wrappers are not present, Codex acts as builder or reviewer 
 ## Updating
 
 ```bash
-cd ~/.codex/agent-trio && git pull
+cd ~/.codex/agent-trio
+git pull
 ```
 
 Skills update instantly through the symlink.

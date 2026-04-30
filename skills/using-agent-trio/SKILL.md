@@ -213,7 +213,7 @@ A request like "Implement the next task in .trio/plan.md" enters execute mode. I
 
 **OpenCode:**
 
-Install via `opencode.json` plugin array (see `.opencode/INSTALL.md`). The plugin at `.opencode/plugins/agent-trio.js` registers the repo-root `skills/` and `agents/` directories with OpenCode — the workflow contract and role prompts are the same files used by every other platform.
+Install via `opencode.json` plugin array when using the npm package, or via a global plugin shim when using a git checkout (see `.opencode/INSTALL.md`). The plugin at `.opencode/plugins/agent-trio.js` registers the repo-root `skills/` directory and `.opencode/agents/` wrappers with OpenCode. The wrappers read `agents/builder.md` and `agents/reviewer.md`, so the workflow contract and role prompts are the same files used by every other platform.
 
 *Dispatching when agents are available:*
 

@@ -1,5 +1,8 @@
 {
   "name": "trio-marketplace",
+  "metadata": {
+    "description": "Marketplace for Agent Trio"
+  },
   "owner": {
     "name": "Avery Yen"
   },

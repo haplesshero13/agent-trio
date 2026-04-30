@@ -125,9 +125,9 @@ files and only records the model choice as a comment in
 Setup may write:
 
 - `opencode.json` at the target repo root — adds agent-trio to the `plugin`
-  array if not already present, and adds a `models` block recording the
-  builder/reviewer choices for user reference. Never rewrites existing
-  unrelated keys; merges additively.
+  array if npm installation is being used, and records the builder/reviewer
+  model choices under `agent.builder.model` and `agent.reviewer.model`. Never
+  rewrites existing unrelated keys; merges additively.
 - `.opencode/agents/builder.md` — _only if_ the user chose `vendored`. Thin
   wrapper that reads `agents/builder.md` (vendored alongside). In
   `plugin-only` mode, no `.opencode/agents/` files are written.
@@ -136,6 +136,11 @@ Setup may write:
 Vendoring requires copying `agents/builder.md` and `agents/reviewer.md`
 into the target repo too, since the wrappers reference them by path. Setup
 must list these files explicitly and confirm before copying.
+
+If the user is using a git checkout instead of npm, setup should print the
+global shim instructions from `.opencode/INSTALL.md` and ask before modifying
+`~/.config/opencode/plugins/agent-trio.js`; that file is outside the target
+repo and is not part of the default generated output.
 
 ### Codex (`codex`)
 

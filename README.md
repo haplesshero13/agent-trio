@@ -37,7 +37,8 @@ Or add to your project's `.claude/settings.json`:
 
 ```bash
 git clone https://github.com/haplesshero13/agent-trio.git ~/.codex/agent-trio
-ln -s ~/.codex/agent-trio/skills/using-agent-trio ~/.codex/skills/using-agent-trio
+mkdir -p ~/.codex/skills
+ln -sfn ~/.codex/agent-trio/skills/using-agent-trio ~/.codex/skills/using-agent-trio
 ```
 
 The skill operates in `consult`, `plan`, or `execute` mode depending on what you ask — it will not create planning files for read-only questions or simple guidance. Builder and reviewer agents are available when Codex runs inside a checkout; without them, the head instance acts locally and still honors the full artifact contract.
@@ -46,15 +47,22 @@ See `.codex/INSTALL.md` for full details and examples.
 
 **OpenCode:**
 
+If `agent-trio` is available from npm:
+
 Add agent-trio to the `plugin` array in your `opencode.json`:
 
 ```json
 {
-  "plugin": ["agent-trio@git+https://github.com/haplesshero13/agent-trio.git"]
+  "plugin": ["agent-trio"]
 }
 ```
 
-Restart OpenCode. The plugin registers the repo-root `skills/` and `agents/` directories, so `using-agent-trio`, `@builder`, and `@reviewer` become available.
+For local development or git-checkout installation, clone the repo and add a
+global shim under `~/.config/opencode/plugins/`; see `.opencode/INSTALL.md`.
+
+Restart OpenCode. The plugin registers the repo-root `skills/` directory and
+the `.opencode/agents/` wrappers, so `using-agent-trio`, `@builder`, and
+`@reviewer` become available.
 
 See `.opencode/INSTALL.md` for details.
 

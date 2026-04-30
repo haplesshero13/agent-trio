@@ -90,3 +90,9 @@ The previous build cycle's .trio/handoff.md carried forward Tests 4 and 5 as "ev
 When you delete a concept from the repo, audit `.trio/criteria.md` in the same loop. A stale criterion (e.g. "grep for trio-agents returns nothing across all .md") can fail against a repo that is otherwise correct, because .trio/learnings.md intentionally keeps historical mentions.
 **Why:** The reviewer runs the criterion exactly as written; over-broad criteria cause false REJECTs.
 **How to apply:** When retiring a concept, scope the matching criterion (and its grep) to where the concept should no longer appear, not everywhere.
+
+### OpenCode npm installs and checkout installs need separate docs
+
+OpenCode can load a published npm plugin from the `plugin` array, while local/git-checkout usage is better represented by a shim in `~/.config/opencode/plugins/` that imports the checkout's plugin file. Treating a git URL as if it were the same as an npm plugin created an install story that did not match the current OpenCode CLI/docs.
+**Why:** Users with a normal `~/.config/opencode/opencode.json` keep model/provider config there, but a local plugin shim is discovered from the plugins directory, not from a fake npm package entry.
+**How to apply:** Document both paths explicitly: `plugin: ["agent-trio"]` only after npm publish; global shim for local or git-checkout installs. Verify with `opencode debug config`, `opencode debug skill`, and `opencode agent list`.

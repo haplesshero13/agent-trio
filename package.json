@@ -10,6 +10,18 @@
   "repository": "https://github.com/haplesshero13/agent-trio",
   "license": "MIT",
   "main": ".opencode/plugins/agent-trio.js",
+  "files": [
+    "AGENTS.md",
+    "agents/",
+    "commands/",
+    "setup/",
+    "skills/",
+    ".claude-plugin/",
+    ".codex/",
+    ".opencode/agents/",
+    ".opencode/plugins/",
+    ".opencode/INSTALL.md"
+  ],
   "oc-plugin": [
     "tui"
   ],

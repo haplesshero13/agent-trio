@@ -148,8 +148,10 @@ Setup may write:
 
 - `.agents/plugins/marketplace.json` — adds a local marketplace entry for
   `agent-trio` when configuring this repo as a Codex plugin marketplace.
-- `.codex-plugin/plugin.json` — records plugin metadata and points Codex at
-  `./skills/`. Setup should not duplicate skill content here.
+- `plugins/agent-trio/.codex-plugin/plugin.json` — records plugin metadata and
+  points Codex at `./skills/`.
+- `plugins/agent-trio/skills` — symlink to the repo-root `skills/`. Setup
+  should not duplicate skill content here.
 - `.codex/agents/builder.toml` — thin TOML wrapper. Records the builder
   model in the `description` field since TOML wrappers do not currently
   carry a typed model selector; the actual model is picked at invocation

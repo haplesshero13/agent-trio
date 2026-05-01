@@ -54,10 +54,11 @@ It should load `using-agent-trio` and create `.trio/plan.md` and
 ## How it works in Codex
 
 **Plugin marketplace (recommended):**
-`.agents/plugins/marketplace.json` exposes the repo root as the Codex plugin
-root using the non-empty path `./plugins/..`. Codex reads
-`.codex-plugin/plugin.json`, which points at `./skills/`, so the workflow
-contract still has one full copy in `skills/using-agent-trio/SKILL.md`.
+`.agents/plugins/marketplace.json` exposes `plugins/agent-trio/` as the Codex
+plugin root. Codex reads `plugins/agent-trio/.codex-plugin/plugin.json`, which
+points at `./skills/`; that directory is a symlink to the repo-root `skills/`,
+so the workflow contract still has one full copy in
+`skills/using-agent-trio/SKILL.md`.
 
 **Global skill fallback:**
 Older Codex builds, or quick local development setups, can still symlink the

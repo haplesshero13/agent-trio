@@ -18,8 +18,8 @@
     "skills/",
     ".agents/plugins/",
     ".claude-plugin/",
-    ".codex-plugin/",
     ".codex/",
+    "plugins/agent-trio/",
     ".opencode/agents/",
     ".opencode/plugins/",
     ".opencode/INSTALL.md"

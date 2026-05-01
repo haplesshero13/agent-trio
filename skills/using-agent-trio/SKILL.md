@@ -189,7 +189,7 @@ Every platform dispatches with one of the prompts above. The invocation shell di
 
 **Codex:**
 
-*Skill discovery (plugin marketplace):* Install via `codex plugin marketplace add <source>`, then open `/plugins`, select **Agent Trio**, and install it. Codex reads `.codex-plugin/plugin.json`, which points at `./skills/`, making `using-agent-trio` discoverable through native plugin discovery without duplicating the workflow contract.
+*Skill discovery (plugin marketplace):* Install via `codex plugin marketplace add <source>`, then open `/plugins`, select **Agent Trio**, and install it. Codex reads `plugins/agent-trio/.codex-plugin/plugin.json`, which points at `./skills/`; that path is a symlink to the repo-root `skills/`, making `using-agent-trio` discoverable through native plugin discovery without duplicating the workflow contract.
 
 *Skill discovery (manual fallback):* Older Codex builds can symlink the skill to `~/.codex/skills/using-agent-trio`, making `using-agent-trio` discoverable from any working directory regardless of project.
 

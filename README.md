@@ -84,7 +84,7 @@ The setup flow only writes to files it tells you about first; see `setup/agent-t
 - `.trio/learnings.md`: the checked-in lessons that still change how the next loop runs
 - `.trio/plan.md`, `.trio/handoff.md`, `.trio/review.md`: the gitignored agent coordination files
 - `.claude/agents/`, `.codex/agents/`: provider wrappers around the roles
-- `.codex-plugin/`, `.agents/plugins/`: Codex plugin manifest and marketplace metadata
+- `plugins/agent-trio/.codex-plugin/`, `.agents/plugins/`: Codex plugin manifest and marketplace metadata
 - `.opencode/`: OpenCode plugin — `plugins/agent-trio.js`, `package.json`, `INSTALL.md`
 - `.claude-plugin/`: plugin manifest for marketplace distribution
 - `commands/setup.md`: `/agent-trio:setup` slash command for Claude Code

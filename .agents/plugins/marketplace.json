@@ -8,7 +8,7 @@
       "name": "agent-trio",
       "source": {
         "source": "local",
-        "path": "./plugins/.."
+        "path": "./plugins/agent-trio"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -102,3 +102,9 @@ OpenCode can load a published npm plugin from the `plugin` array, while local/gi
 Codex CLI exposes `codex plugin marketplace add`, not a direct `codex plugin install` command. A repo can still be first-class installable by providing `.codex-plugin/plugin.json` and `.agents/plugins/marketplace.json`; after adding the marketplace, the user installs the plugin from `/plugins`.
 **Why:** Symlinking into `~/.codex/skills` works as a fallback, but it bypasses Codex's native plugin UI and does not match the current user-facing install flow.
 **How to apply:** For Codex plugin repos, keep `.codex-plugin/plugin.json` at the plugin root, keep marketplace metadata in `.agents/plugins/marketplace.json`, document `codex plugin marketplace add <source>` followed by `/plugins`, and validate local changes with `HOME=/tmp/... codex plugin marketplace add .`.
+
+### Codex marketplace plugin paths cannot be the empty root path
+
+Codex accepts `codex plugin marketplace add .` even when an entry uses `source.path: "./"`, but the plugin loader later skips it with `local plugin source path must not be empty`. Marketplace entries need a non-empty source path such as `./plugins/agent-trio` or, for a repo-root plugin, `./plugins/..`.
+**Why:** Registration validates the marketplace root, while plugin discovery validates each plugin entry later. A passing `marketplace add` alone is not enough evidence that `/plugins` can render the plugin.
+**How to apply:** Prefer a normal plugin subdirectory such as `./plugins/<name>` when the plugin owns its skill files. If the repo root is the plugin root because it owns shared files such as `skills/`, use a non-empty equivalent path such as `./plugins/..` instead of `./`, keep plugin-relative resource paths like `./skills/`, and inspect `~/.codex/log/codex-tui.log` or run a prompt refresh to catch loader warnings.

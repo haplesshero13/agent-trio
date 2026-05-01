@@ -29,6 +29,17 @@ the plugin in `/plugins`; selecting it installs the `using-agent-trio` skill.
 
 3. **Restart Codex** if the skill is not immediately visible.
 
+If you added the marketplace while it still had the skipped empty-path entry,
+refresh the local registration:
+
+```bash
+codex plugin marketplace remove agent-trio-marketplace
+cd /path/to/agent-trio
+codex plugin marketplace add .
+```
+
+Then restart Codex and check `/plugins` again.
+
 ## Verify
 
 Ask Codex something that should trigger the workflow, for example:
@@ -43,10 +54,10 @@ It should load `using-agent-trio` and create `.trio/plan.md` and
 ## How it works in Codex
 
 **Plugin marketplace (recommended):**
-`.agents/plugins/marketplace.json` exposes the repo-root plugin. Codex reads
-`.codex-plugin/plugin.json`, which points at `skills/`, so installing the plugin
-from `/plugins` makes `using-agent-trio` available through native Codex plugin
-discovery.
+`.agents/plugins/marketplace.json` exposes the repo root as the Codex plugin
+root using the non-empty path `./plugins/..`. Codex reads
+`.codex-plugin/plugin.json`, which points at `./skills/`, so the workflow
+contract still has one full copy in `skills/using-agent-trio/SKILL.md`.
 
 **Global skill fallback:**
 Older Codex builds, or quick local development setups, can still symlink the
@@ -89,6 +100,10 @@ Local checkout marketplace install:
 cd /path/to/agent-trio
 git pull
 ```
+
+If Codex still shows an old plugin list after a local checkout update, remove
+and re-add the local marketplace as shown above. `codex plugin marketplace
+upgrade` only applies to Git-backed marketplaces.
 
 Symlink fallback:
 
